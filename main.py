@@ -46,22 +46,22 @@ def convert(mode):
         name = "Jake"
         string = input("Message: ")
         keyword = input("Key: ")
-
         key = generateKey(string, keyword)
         cipher_text = cipherText(string, key)
         firebase_communicator.send(cipher_text, name)
 
     elif mode == "de":
+        keyword = input("Key: ")
         data = firebase_communicator.recive()
-        
         messages = list(data.values())
         messages_length = len(messages)
         for text in range(messages_length):
-            print("WOK")
-        #    foo = messages[text]
-        #    print(foo[1])
+            ciph = messages[text]
+            thing = ciph[1]
 
-        #key = generateKey(string, key)
+            key = generateKey(thing, keyword)
+            out = originalText(thing, key)
+            print(f'{ciph[0]}: {out}')
 
 # Driver code 
 if __name__ == "__main__":
